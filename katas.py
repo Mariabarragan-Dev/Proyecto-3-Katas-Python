@@ -211,20 +211,55 @@ print(generar_tuplas(caracteres))
 
 #14.Crea una función que retorne las palabras de una lista que comiencen con una letra en específico. Usa la función filter().
 
+lista_asesinos =  ["Cazadora", "Enfermera", "Bubba", "Legión", "Espectro","Payaso"]
 
+def retorno_palabras(lista, letra):
+    
+    def empieza_con(palabra):
+        return palabra.startswith(letra)
+    
+    resultado = list(filter(empieza_con, lista))
+    return resultado
+
+print(retorno_palabras(lista_asesinos, "E"))
 
 
 #15.Crea una función lambda que sume 3 a cada número de una lista dada. 
 
+lista = [1, 2, 3, 4, 5]
+
+resultado = list(map(lambda x: x + 3, lista))
+
+print(resultado)
 
 
 #16.Escribe una función que tome una cadena de texto y un número entero n como parámetros y devuelva una lista de todas las palabras que sean más largas que n. Usa la función filter().
 
+def palabras_largas(cadena, n):
+    palabras = cadena.split()
+    return list(filter(lambda palabra: len(palabra) > n, palabras))
+
+texto = "Hola guapo, ¿qué haces?"
+
+print(palabras_largas(texto, 5))
+
 
 #17.Crea una función que tome una lista de dígitos y devuelva el número correspondiente. Por ejemplo, [5,7,2] corresponde al número 572. Usa la función reduce().
 
+from functools import reduce
+
+def combinar(acumulado, digito):
+    return acumulado * 10 + digito
+
+def numeros(lista):
+    resultado = reduce(combinar, lista)
+    return resultado
+
+print(numeros([5, 7, 2]))
 
 #18.Escribe un programa en Python que cree una lista de diccionarios con información de estudiantes (nombre, edad, calificación) y use filter para extraer a los estudiantes con una calificación mayor o igual a 90.
+
+
 
 
 #19.Crea una función lambda que filtre los números impares de una lista dada.
