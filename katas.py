@@ -91,11 +91,83 @@ print(factorial(5))
 
 #7. Genera una función que convierta una lista de tuplas a una lista de strings. Usa la función map().
 
+# Primero he definido una lista de tuplas.
+# Después uso map() para recorrer cada tupla de la lista.
+# Con lambda accedo a los elementos de cada tupla mediante sus posiciones y los convierto en un string usando un formato de texto.
+# Por último, uso list() para convertir el resultado de map() en una lista normal.
+
+lista_tuplas = [
+    ("Maria", 25),
+    ("Juan", 30),
+    ("Ana", 22)
+]
+
+def convertir_tuplas_a_strings(lista_tuplas):
+    return list(map(lambda tupla: f"{tupla[0]} - {tupla[1]}", lista_tuplas))
+
+resultado = convertir_tuplas_a_strings(lista_tuplas)
+
+print(resultado)
+
+#8.Escribe un programa que pida al usuario dos números e intente dividirlos. Si el usuario ingresa un valor no numérico o intenta dividir por cero, maneja esas excepciones de manera adecuada y muestra un mensaje indicando si la división fue exitosa o no.
+
+# Primero he puesto que los números introducidos tienen que ser float. Partiendo de esta base he contemplado dos errores. El primero (ValueError) por si escribe el número (Ocho, 5a..). El segundo (ZeroDivisionError) error se da si se intenta dividir entre 0. 
+
+def dividir_numeros():
+    try:
+        num1 = float(input("Introduce el primer número: "))
+        num2 = float(input("Introduce el segundo número: "))
+
+        resultado = num1 / num2
+
+    except ValueError:
+        print("Error: debes introducir un valor numérico.")
+
+    except ZeroDivisionError:
+        print("Error: no se puede dividir entre cero.")
+
+    else:
+        print(f"División exitosa. El resultado es: {resultado}")
+
+dividir_numeros()
+
+#9. Escribe una función que tome una lista de nombres de mascotas como parámetro y devuelva una nueva lista excluyendo ciertas mascotas prohibidas en España. La lista de mascotas a excluir es ["Mapache", "Tigre", "Serpiente Pitón", "Cocodrilo", "Oso"]. Usa la función filter().
+
+lista_mascotas =  ["Perro", "Conejo", "Mapache", "Tigre", "Gato","Serpiente Pitón","Pez", "Cocodrilo", "Oso"]
+
+prohibidas = ["Mapache", "Tigre", "Serpiente Pitón", "Cocodrilo", "Oso"]
+
+def permitida(mascota):
+    return mascota not in prohibidas
+
+def excluyentes(lista):
+    return list(filter(permitida, lista))
+
+print(excluyentes(lista_mascotas))
+
+#10.Escribe una función que reciba una lista de números y calcule su promedio. Si la lista está vacía, lanza una excepción personalizada y maneja el error adecuadamente.
+
+lista_numeros3 = [1, 2, 3, 4, 5]
+lista_vacia = [] #Ejemplo para comprobar que el error funciona
+
+class ListaVaciaError(Exception):# Creo una clase donde está incluida la excepción personalizada
+    pass
+
+def calcular_promedio(lista):
+    if len(lista) == 0:
+        raise ListaVaciaError("La lista está vacía.")# raise lanza la excepción
+
+    return sum(lista) / len(lista)
+
+try:
+    promedio = calcular_promedio(lista_vacia)
+    print("El promedio es:", promedio)
+
+except ListaVaciaError as e: #guarda la excepción en "e" para lanzar el mensaje de Error 
+    print("Error:", e)
 
 
-#8.
-#9.
-#10.
+
 #11.
 #12.
 #13.
