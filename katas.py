@@ -296,18 +296,56 @@ print(retorno_int(lista_tipos))
 
 #21.Crea una función que calcule el cubo de un número dado mediante una función lambda.
 
+def cubo(numero):
+    calcular = lambda x: x ** 3
+    return calcular(numero)
+
+print(cubo(3))#Ejemplo para comprobar que funciona
 
 #22.Dada una lista numérica, obtén el producto total de los valores. Usa la función reduce().
 
+from functools import reduce
+
+lista_numerica = [1, 2, 3, 4, 5, 6, 7, 8]
+
+
+def producto_total(lista):
+    return reduce(lambda x, y: x * y, lista)# Recorre la lista multiplicando los números: x= 1  y= 2 --> 1*2 = 2.... cuando no quedan más números devuelve el resultado.
+
+print(producto_total(lista_numerica))
 
 #23.Concatena una lista de palabras. Usa la función reduce().
+
+from functools import reduce
+
+lista_palabras = ["Maria", "Es", "Genial", "Fantástica"]
+
+def concatenar(lista):
+    return reduce(lambda x, y: x + " " + y, lista)
+
+print(concatenar(lista_palabras))
 
 
 #24.Calcula la diferencia total en los valores de una lista. Usa la función reduce().
 
+from functools import reduce
+
+lista_valores = [1, 2, 3, 4, 5, 6, 7, 8]
+def diferencia_total (lista):
+    return reduce(lambda x, y: x - y, lista)
+
+print (diferencia_total (lista_valores))
+
 
 #25.Crea una función que cuente el número de caracteres en una cadena de texto dada.
 
+def caracteres_cadena():
+    frase = input("Introduce una frase: ")
+    return len(frase)
+
+resultado = caracteres_cadena()
+
+print("La frase tiene", resultado, "caracteres")
 
 #26.Crea una función lambda que calcule el resto de la división entre dos números dados.
 
