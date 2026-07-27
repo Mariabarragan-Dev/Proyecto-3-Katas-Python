@@ -348,13 +348,40 @@ resultado = caracteres_cadena()
 print("La frase tiene", resultado, "caracteres")
 
 #26.Crea una función lambda que calcule el resto de la división entre dos números dados.
+lista_resto = [8734, 1984]
 
+def division_numeros(lista):
+    resto = lambda x, y: x % y
+    return resto(lista[0], lista[1])# lista [0] para que empiece por la posición 0 => 8734, lista [1] segundo indice => 1984
+
+print(division_numeros(lista_resto))
 
 #27.Crea una función que calcule el promedio de una lista de números.
 
+lista_promedio = [34, 235, 23, 45, 11]
+
+def promedio_lista(lista):
+    suma = sum(lista)
+    cantidad = len(lista)
+    return suma / cantidad
+
+print(promedio_lista(lista_promedio))
 
 #28.Crea una función que busque y devuelva el primer elemento duplicado en una lista dada.
 
+lista_duplicada = ["SyntaxError", "Bug", "Error 404", "Bug", "Café derramado", "Error 404"]
+
+def primer_duplicado(lista):
+    vistos = []
+
+    for elemento in lista:
+        if elemento in vistos:
+            return elemento
+        vistos.append(elemento)
+
+    return "No hay duplicados"
+
+print(primer_duplicado(lista_duplicada))
 
 #29.Crea una función que convierta una variable en una cadena de texto y enmascare todos los caracteres con el carácter '#' excepto los últimos cuatro.
 
