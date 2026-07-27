@@ -259,14 +259,40 @@ print(numeros([5, 7, 2]))
 
 #18.Escribe un programa en Python que cree una lista de diccionarios con información de estudiantes (nombre, edad, calificación) y use filter para extraer a los estudiantes con una calificación mayor o igual a 90.
 
+estudiantes = [
+    {"nombre": "Maria", "edad": 33, "calificacion": 95},
+    {"nombre": "Patricia", "edad": 33, "calificacion": 92},
+    {"nombre": "Diego", "edad": 34, "calificacion": 90},
+    {"nombre": "Nacho", "edad": 35, "calificacion": 85},
+    {"nombre": "Ana", "edad": 33, "calificacion": 80}
+]
 
+def mayor_nota(estudiante):
+    return estudiante["calificacion"] >= 90
+
+estudiantes_destacados = list(filter(mayor_nota, estudiantes))
+
+print(estudiantes_destacados)
 
 
 #19.Crea una función lambda que filtre los números impares de una lista dada.
 
+numeros_lista = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+impares = list(filter(lambda numero: numero % 2 != 0, numeros_lista))
+
+print(impares)
 
 #20.Para una lista con elementos de tipo integer y string, obtén una nueva lista solo con los valores int. Usa la función filter().
 
+lista_tipos = ["Maria", 4, 8, "Patricia", "Coco", 7]
+
+def retorno_int(lista):
+    numeros = list(filter(lambda x: isinstance(x, int), lista))#uso isinstance para comprobar si un dato es de un tipo determinado (en este caso int)
+    return numeros
+
+print(retorno_int(lista_tipos))
+    
 
 #21.Crea una función que calcule el cubo de un número dado mediante una función lambda.
 
