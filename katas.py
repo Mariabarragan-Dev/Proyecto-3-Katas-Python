@@ -385,11 +385,53 @@ print(primer_duplicado(lista_duplicada))
 
 #29.Crea una función que convierta una variable en una cadena de texto y enmascare todos los caracteres con el carácter '#' excepto los últimos cuatro.
 
+def enmascarar(variable):
+    texto = str(variable)  # Convierte cualquier tipo de dato a una cadena
+
+    if len(texto) <= 4: # para obtener la longitud
+        return texto
+
+    return "#" * (len(texto) - 4) + texto[-4:] #(len(texto) - 4) para crear la cantidad de "#", texto[-4:] para dejar visible los últimos 4 caracteres y con el "+" se unen ambas partes
+
+print(enmascarar(123456789))      
+print(enmascarar("abcdefghi"))    
+print(enmascarar("1234")) #Salen directamente los 4 caracteres         
+print(enmascarar(True))           
+print(enmascarar("password"))
 
 #30.Crea una función que determine si dos palabras son anagramas, es decir, si están formadas por las mismas letras pero en diferente orden.
 
+def es_anagrama(palabra1, palabra2):
+    palabra1 = palabra1.lower().replace(" ", "")#Para eliminar los espacios
+    palabra2 = palabra2.lower().replace(" ", "")
+
+    return sorted(palabra1) == sorted(palabra2)
+
+print(es_anagrama("roma", "mora"))      
+print(es_anagrama("listen", "silent"))  
+print(es_anagrama("hola", "holo"))      
+print(es_anagrama("casa", "Saca"))      
+print(es_anagrama("Perro", "pirre"))
 
 #31.Crea una función que solicite al usuario ingresar una lista de nombres y luego un nombre para buscar en esa lista. Si el nombre está en la lista, imprime un mensaje indicando que fue encontrado; de lo contrario, lanza una excepción.
+
+def buscar_nombre():
+    
+    nombres = input("Introduce los nombres: ").lower().split()# Para convertir el texto en una lista
+
+    # Para pedir el nombre que tiene que buscar
+    nombre_buscado = input("Introduce el nombre que quieres buscar: ").lower()
+
+    # Busca el nombre
+    if nombre_buscado in nombres:
+        print(f"El nombre '{nombre_buscado}' fue encontrado en la lista.")
+    else:
+        raise Exception(f"El nombre '{nombre_buscado}' no se encuentra en la lista.")
+
+try:
+    buscar_nombre()
+except Exception as e:
+    print(e)
 
 
 #32.Crea una función que tome un nombre completo y una lista de empleados, busque el nombre en la lista y devuelva el puesto del empleado si se encuentra; de lo contrario, devuelve un mensaje indicando que la persona no trabaja aquí.
