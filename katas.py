@@ -436,8 +436,63 @@ except Exception as e:
 
 #32.Crea una función que tome un nombre completo y una lista de empleados, busque el nombre en la lista y devuelva el puesto del empleado si se encuentra; de lo contrario, devuelve un mensaje indicando que la persona no trabaja aquí.
 
+lista_empleados = [
+    {
+        "nombre": "Maria",
+        "apellido": "Barragan",
+        "profesion": "Probadora de camas"
+    },
+    {
+        "nombre": "Patricia",
+        "apellido": "Estevez",
+        "profesion": "Empujadora de metro"
+    },
+    {
+        "nombre": "Alicia",
+        "apellido": "Gomez",
+        "profesion": "Probadora de toboganes"
+    }
+]
+
+def buscar_empleado(nombre_completo, empleados):
+    nombre_completo = nombre_completo.lower()
+
+    for empleado in empleados: #Para recorrer la lista
+        nombre = empleado["nombre"].lower()
+        apellido = empleado["apellido"].lower()
+
+        nombre_empleado = nombre + " " + apellido
+
+        if nombre_empleado == nombre_completo:
+            return f"{empleado['nombre']} trabaja como {empleado['profesion']}"# preguntamos si el nombre completo se encuentra en la lista y si es así que devuelva la profesión de ese empleado.
+
+    return "Esta persona no trabaja aquí."
+
+
+nombre = input("Introduce el nombre completo del empleado: ")
+
+resultado = buscar_empleado(nombre, lista_empleados)
+
+print(resultado)
 
 #33.Crea una función lambda que sume elementos correspondientes de dos listas dadas.
+
+primera_lista = [1, 2, 3, 4, 5, 6]
+segunda_lista = [7, 8, 9, 10, 11, 12]
+
+def suma(lista1, lista2):
+    sumas = lambda x, y: x + y
+
+    resultado = []
+
+    for x, y in zip(lista1, lista2): #Uso zip para unir los elementos de las dos listas por parejas según su posición
+        resultado.append(sumas(x, y))
+
+    return resultado
+
+
+print(suma(primera_lista, segunda_lista))
+
 
 
 #34.Crea la clase Arbol
@@ -458,6 +513,8 @@ except Exception as e:
      #   e. Añadir dos nuevas ramas.
       #  f. Retirar la rama situada en la posición 2.
        # g. Obtener información sobre el árbol.*/
+
+       
 #35.Crea la clase UsuarioBanco
 #Representa a un usuario de un banco con su nombre, saldo y si tiene o no cuenta corriente.
 #Métodos: retirar_dinero, transferir_dinero, agregar_dinero.
