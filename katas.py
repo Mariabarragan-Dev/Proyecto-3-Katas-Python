@@ -166,6 +166,7 @@ try:
 except ListaVaciaError as e: #guarda la excepción en "e" para lanzar el mensaje de Error 
     print("Error:", e)
 
+
 #11.Escribe un programa que pida al usuario que introduzca su edad. Si el usuario ingresa un valor no numérico o un valor fuera del rango esperado (por ejemplo, menor que 0 o mayor que 120), maneja las excepciones adecuadamente.
 
 
@@ -716,7 +717,37 @@ calificacion_texto()
 
 #39.Escribe una función que tome dos parámetros: figura (una cadena que puede ser "rectangulo", "circulo" o "triangulo") y datos (una tupla con los datos necesarios para calcular el área de la figura).
 
+#Rectángulo: área = base × altura 
+#Círculo: área = π × radio² 
+#Triángulo: área = (base × altura) / 2 
 
+import math #He importado math para poder usar el valor de Pi en el area del circulo.
+
+def calcular_area(figura, datos):
+    if figura == "rectangulo":
+        base, altura = datos
+        return base * altura
+    
+    elif figura == "circulo":
+        radio = datos[0]
+        return math.pi * radio ** 2
+    
+    elif figura == "triangulo":
+        base, altura = datos
+        return (base * altura) / 2
+    
+    else:
+        raise ValueError("Figura no válida. Usa 'rectangulo', 'circulo' o 'triangulo'.")
+
+#Ejemplos:
+# Rectángulo: base=5, altura=3
+print(calcular_area("rectangulo", (5, 3)))
+
+# Círculo: radio=4
+print(calcular_area("circulo", (4,)))#Escribo la coma para que sea una tupla.
+
+# Triángulo: base=6, altura=4
+print(calcular_area("triangulo", (6, 4)))
 
 #40.Escribe un programa en Python que utilice condicionales para determinar el monto final de una compra en una tienda en línea, después de aplicar un descuento. El programa debe:
     #a. Solicitar al usuario el precio original de un artículo.
@@ -725,3 +756,43 @@ calificacion_texto()
     #d. Aplicar el descuento al precio original, siempre que el valor del cupón sea válido (mayor a cero).
     #e. Mostrar el precio final de la compra, considerando o no el descuento.
     #f. Usar estructuras de control de flujo (if, elif, else) para llevar a cabo las acciones.
+
+def calcular_compra():
+    try:
+        #Solicitar el precio original
+        precio_original = float(input("Introduce el precio original del artículo: "))
+        
+        #Preguntar si tiene cupón de descuento
+        tiene_cupon = input("¿Tienes un cupón de descuento? (si/no): ").lower()
+        
+        if tiene_cupon == "sí" or tiene_cupon == "si":
+            #Solicitar el valor del cupón
+            valor_cupon = float(input("Introduce el valor del cupón de descuento: "))
+            
+            #Aplicar el descuento si el cupón es válido
+            if valor_cupon > 0:
+                precio_final = precio_original - valor_cupon
+                
+                #Para evitar que el precio final sea negativo
+                if precio_final < 0:
+                    precio_final = 0
+                
+                print(f"Se ha aplicado un descuento de {valor_cupon}€.")
+            else:
+                print("El cupón no es válido. No se aplicará ningún descuento.")
+                precio_final = precio_original
+        
+        elif tiene_cupon == "no":
+            precio_final = precio_original
+        
+        else:
+            print("Respuesta no válida. Se asume que no tienes cupón.")
+            precio_final = precio_original
+        
+        #Mostrar el precio final
+        print(f"El precio final de tu compra es: {precio_final}€")
+    
+    except ValueError:
+        print("Error: debes introducir valores numéricos válidos.")
+
+calcular_compra()
