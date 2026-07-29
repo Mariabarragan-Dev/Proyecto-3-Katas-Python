@@ -618,10 +618,75 @@ except ValueError as e:
 #Caso de uso:
 #Verificar el funcionamiento completo de procesar_texto.
 
+def contar_palabras(texto):
+    palabras = texto.split()
+    contador = {}
+    
+    for palabra in palabras:
+        if palabra in contador:
+            contador[palabra] += 1
+        else:
+            contador[palabra] = 1
+    
+    return contador
 
+
+def reemplazar_palabras(texto, palabra_original, palabra_nueva):
+    return texto.replace(palabra_original, palabra_nueva)
+
+
+def eliminar_palabra(texto, palabra):
+    palabras = texto.split()
+    palabras_filtradas = [p for p in palabras if p != palabra]#he hecho list comprehesion para acortar código en vez de hacerlo con for. Quiere decir, recorre cada palabra "p" en la lista palabras. Si esa palabra "p" es diferente de la palabra que quiero eliminar(palabra), añadela a la nueva lista de palabras_filtradaas.
+    return " ".join(palabras_filtradas)#Uso join para convertir la lista de palabras de nuevo en un texto único.
+
+
+def procesar_texto(texto, opcion, *args):
+    if opcion == "contar":
+        return contar_palabras(texto)
+    elif opcion == "reemplazar":
+        return reemplazar_palabras(texto, *args)
+    elif opcion == "eliminar":
+        return eliminar_palabra(texto, *args)
+    else:
+        raise ValueError("Opción no válida. Usa 'contar', 'reemplazar' o 'eliminar'.")
+
+
+texto_ejercicio36 = "hola me llamo Maria y soy genial"
+
+#comprobar que funciona "contar"
+resultado_contar = procesar_texto(texto_ejercicio36, "contar")
+print("Contar palabras:", resultado_contar)
+
+#comprobar que funciona "reemplazar"
+resultado_reemplazar = procesar_texto(texto_ejercicio36, "reemplazar", "genial", "un planeta")
+print("Reemplazar palabra:", resultado_reemplazar)
+
+#comprobar que funciona "eliminar"
+resultado_eliminar = procesar_texto(texto_ejercicio36, "eliminar", "hola")
+print("Eliminar palabra:", resultado_eliminar)
 
 #37.Genera un programa que nos indique si es de noche, de día o de tarde según la hora proporcionada por el usuario.
 
+def indicar_momento_dia():
+    try:
+        hora = int(input("Introduce la hora (0-23): "))
+        
+        if hora < 0 or hora > 23:
+            print("Error: la hora debe estar entre 0 y 23.")
+        elif hora >= 0 and hora < 6:
+            print("Es de noche.")
+        elif hora >= 6 and hora < 12:
+            print("Es de día (mañana).")
+        elif hora >= 12 and hora < 20:
+            print("Es de tarde.")
+        else:
+            print("Es de noche.")
+    
+    except ValueError:
+        print("Error: debes introducir un número válido.")
+
+indicar_momento_dia()
 
 #38.Escribe un programa que determine qué calificación en texto tiene un alumno según su calificación numérica.
 #Reglas:
@@ -629,7 +694,25 @@ except ValueError as e:
   #      70 - 79: bien
    #     80 - 89: muy bien
     #    90 - 100: excelente
+def calificacion_texto():
+    try:
+        nota = int(input("Introduce tu nota (0-100): "))
+        
+        if nota < 0 or nota > 100:
+            print("Error: la nota debe estar entre 0 y 100.")
+        elif nota >= 0 and nota <= 69:
+            print("Insuficiente.")
+        elif nota > 69 and nota <= 79:
+            print("Bien.")
+        elif nota >= 80 and nota <= 89:
+            print("Muy bien.")
+        else:
+            print("Excelente.")
+    
+    except ValueError:
+        print("Error: debes introducir un número válido.")
 
+calificacion_texto()
 
 #39.Escribe una función que tome dos parámetros: figura (una cadena que puede ser "rectangulo", "circulo" o "triangulo") y datos (una tupla con los datos necesarios para calcular el área de la figura).
 
