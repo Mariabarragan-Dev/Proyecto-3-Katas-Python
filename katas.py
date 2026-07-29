@@ -514,7 +514,43 @@ print(suma(primera_lista, segunda_lista))
       #  f. Retirar la rama situada en la posición 2.
        # g. Obtener información sobre el árbol.*/
 
-       
+class Arbol:
+    def __init__(self): #Constructor
+        self.tronco = 1
+        self.ramas = []
+
+    def crecer_tronco(self):
+        self.tronco += 1
+
+    def nueva_rama(self):
+        self.ramas.append(1)
+
+    def crecer_ramas(self):
+        for i in range(len(self.ramas)):
+            self.ramas[i] += 1
+
+    def quitar_rama(self, posicion):
+        self.ramas.pop(posicion)
+
+    def info_arbol(self):
+        return f"Longitud del tronco: {self.tronco}, número de ramas: {len(self.ramas)}, longitudes de ramas: {self.ramas}"
+
+arbol = Arbol()             # a. Crear un árbol
+
+arbol.crecer_tronco()       # b. Hacer crecer el tronco una unidad
+
+arbol.nueva_rama()          # c. Añadir una nueva rama
+
+arbol.crecer_ramas()        # d. Hacer crecer todas las ramas una unidad
+
+arbol.nueva_rama()          # e. Añadir dos nuevas ramas
+arbol.nueva_rama()
+
+arbol.quitar_rama(2)        # f. Retirar la rama situada en la posición 2
+
+print(arbol.info_arbol())
+
+
 #35.Crea la clase UsuarioBanco
 #Representa a un usuario de un banco con su nombre, saldo y si tiene o no cuenta corriente.
 #Métodos: retirar_dinero, transferir_dinero, agregar_dinero.
@@ -529,7 +565,49 @@ print(suma(primera_lista, segunda_lista))
     #    c. Transferir 80 unidades de Bob a Alicia.
      #   d. Retirar 50 unidades del saldo de Alicia.
 
+class UsuarioBanco:
+    def __init__(self, nombre, saldo, cuenta_corriente):
+        self.nombre = nombre
+        self.saldo = saldo
+        self.cuenta_corriente = cuenta_corriente
+    def agregar_dinero(self, cantidad):
+        self.saldo += cantidad
+    def retirar_dinero(self, cantidad):
+        if cantidad > self.saldo:
+            raise ValueError ("No hay saldo suficiente para sacar esa cantidad.")
+        self.saldo -= cantidad
+    def transferir_dinero(self, otro_usuario, cantidad):
+        if cantidad > self.saldo:
+            raise ValueError("No hay saldo suficiente para transferir.")
+        self.saldo -= cantidad
+        otro_usuario.saldo += cantidad
+# Creo los usuarios de Alicia y Bob
+alicia = UsuarioBanco("Alicia", 100, True)
+bob = UsuarioBanco("Bob", 50, True)
 
+print (f"El saldo inicial de Alicia es: {alicia.saldo}")
+print (f"El saldo inicial de Bob es: {bob.saldo}")
+
+#Agrego 20 unidades al saldo de Bob
+bob.agregar_dinero(20)
+print (f"El saldo de Bob después de agregar 20 es: {bob.saldo}")
+
+#Transferir 80 unidades de Bob a Alicia
+#Con los datos del enunciado, Bob solo tiene 70 (50 + 20) después del paso b, por lo que no tiene saldo suficiente para transferir 80. Esto provoca que salte el ValueError de "saldo insuficiente" que lo puse en transferir_dinero().
+# Uso try/except para capturar este error y que el programa no se detenga.
+try:
+    bob.transferir_dinero(alicia, 80)
+    print(f"El saldo de Bob tras transferir 80: {bob.saldo}")
+    print(f"El saldo de Alicia tras recibir 80: {alicia.saldo}")
+except ValueError as e:
+    print("Error al transferir:", e)
+
+#Retirar 50 unidades del saldo de Alicia
+try:
+    alicia.retirar_dinero(50)
+    print(f"El saldo de Alicia tras retirar 50: {alicia.saldo}")
+except ValueError as e:
+    print("Error al retirar:", e)
 
 #36.Crea una función llamada procesar_texto Procesa un texto según la opción especificada: contar_palabras, reemplazar_palabras o eliminar_palabra.
 #Código a seguir:
